@@ -1,4 +1,6 @@
 FROM python:3.8.5
+RUN python3 -m venv venv
+RUN . /venv/bin/activate
 ENV FOO=/code
 WORKDIR ${FOO}
 COPY requirements.txt $FOO
