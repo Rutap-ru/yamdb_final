@@ -3,7 +3,7 @@ from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django.utils.crypto import get_random_string
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, views, viewsets, status
+from rest_framework import filters, status, views, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import (
@@ -15,20 +15,21 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from api_yamdb.settings import EMAIL_FOR_MAILING
+
 from .filters import TitleFilter
 from .mixins import DeleteViewSet
 from .models import Title, Genre, Category, User, Review
 from .permissions import IsAdminRole, IsAdminOrReadOnly, IsAuthorOrStaff
 from .serializers import (
+    CategorySerializer,
+    CommentSerializer,
+    GenreSerializer,
     JWTRequestSerializer,
+    ReviewSerializer,
+    TitleSerializer,
     TitleSerializerGET,
     UserSerializer,
-    UserConfirmCodeSerializer,
-    TitleSerializer,
-    GenreSerializer,
-    CategorySerializer,
-    ReviewSerializer,
-    CommentSerializer
+    UserConfirmCodeSerializer
 )
 
 
@@ -39,8 +40,8 @@ class UserConfirmCodeViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         confirmation_code = get_random_string(length=32)
-        validatedData = serializer.validated_data
-        user_email = validatedData.get('email')
+        data_validated = serializer.validated_data
+        user_email = data_validated.get('email')
         serializer.save(
             password=confirmation_code,
             username=user_email,

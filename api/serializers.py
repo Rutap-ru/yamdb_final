@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from .models import Title, Genre, Category, User, Comment, Review
-from .fields import GenreField, CategoryField
+from .fields import CategoryField, GenreField
+from .models import Category, Comment, Genre, Review, Title, User
 
 
 class UserConfirmCodeSerializer(serializers.ModelSerializer):

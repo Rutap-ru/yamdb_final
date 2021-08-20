@@ -1,15 +1,16 @@
-from django.urls import include, path
-from rest_framework.routers import DefaultRouter
 from .views import (
     AuthTokenJwt,
-    UserConfirmCodeViewSet,
-    UserViewSet,
-    TitleViewSet,
-    GenreViewSet,
     CategoryViewSet,
+    CommentViewSet,
+    GenreViewSet,
     ReviewViewSet,
-    CommentViewSet
+    TitleViewSet,
+    UserConfirmCodeViewSet,
+    UserViewSet
 )
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+
 
 router_v1 = DefaultRouter()
 router_v1.register('auth/email', UserConfirmCodeViewSet)

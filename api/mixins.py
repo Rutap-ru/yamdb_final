@@ -1,4 +1,4 @@
-from rest_framework import mixins, viewsets, serializers
+from rest_framework import mixins, serializers, viewsets
 
 
 class DeleteViewSet(mixins.DestroyModelMixin,
@@ -12,6 +12,6 @@ class GenreCatField(serializers.SlugRelatedField):
     def to_representation(self, value):
         ret = {
             'name': value.name,
-            'slug': value.slug
+            'slug': value.slug,
         }
         return ret
