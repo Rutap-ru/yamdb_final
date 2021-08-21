@@ -34,4 +34,4 @@ python manage.py loaddata fixtures.json
 После запуска проекта, вам будет доступна документация по API, расположенная - http://example.com/redoc/
 
 
-![API documentation](http://178.154.199.71/redoc/)
+![example workflow](https://github.com/Rutap-ru/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
