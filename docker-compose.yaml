@@ -7,7 +7,7 @@ services:
     env_file:
       - ./.env
   web:
-    image: 4178302998/infra_actions
+    build: .
     restart: always
     volumes:
       - static_value:/code/static/
